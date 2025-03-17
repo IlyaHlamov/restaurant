@@ -1,0 +1,13 @@
+# Байт-код и оптимизированные файлы
+__pycache__/
+*.py[cod]
+
+# Файлы конфигурации окружения
+.env
+
+# Миграции Django
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Файлы IDE
+.idea/
