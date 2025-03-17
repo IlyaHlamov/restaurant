@@ -13,7 +13,7 @@ class User(models.Model):
         return self.name
 
 class Supplier(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
     address = models.CharField(max_length=200)
     mail = models.EmailField()
     phone_number = models.CharField(max_length=15)
@@ -29,7 +29,7 @@ class Product(models.Model):
         ('ML', 'ml'),
         ('UNIT', 'unit'),
     ]
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
     unit_of_measure = models.CharField(max_length=50, choices=measure_TYPE_CHOICES)
     quantity = models.PositiveIntegerField()
     cost = models.DecimalField(max_digits=10, decimal_places=2)
@@ -41,7 +41,7 @@ class Product(models.Model):
         return self.name
 
 class Menu(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
     ingredient = models.ManyToManyField(Product, through= 'MenuProduct')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
