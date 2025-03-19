@@ -71,7 +71,7 @@ class Order(models.Model):
     reservation_time = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    waiter = models.ForeignKey(User, on_delete=models.CASCADE)
+    waiter = models.IntegerField() #models.ForeignKey(User, on_delete=models.CASCADE)
     full_price = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,default='Pending')
     menus = models.ManyToManyField(Menu, through='OrderMenu')
