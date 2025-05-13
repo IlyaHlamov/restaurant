@@ -13,10 +13,10 @@ class User(models.Model):
         return self.name
 
 class Supplier(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
     address = models.CharField(max_length=200)
     mail = models.EmailField()
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -29,10 +29,11 @@ class Product(models.Model):
         ('ML', 'ml'),
         ('UNIT', 'unit'),
     ]
-    name = models.CharField(max_length=100)
-    unit_of_measure = models.CharField(max_length=50, choices=measure_TYPE_CHOICES)
+    name = models.CharField(max_length=100,unique=True)
+    unit_of_measure = models.CharField(max_length=100, choices=measure_TYPE_CHOICES)
     quantity = models.PositiveIntegerField()
-    cost = models.DecimalField(max_digits=10, decimal_places=2)
+    unit_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -41,7 +42,7 @@ class Product(models.Model):
         return self.name
 
 class Menu(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
     ingredient = models.ManyToManyField(Product, through= 'MenuProduct')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
@@ -70,7 +71,7 @@ class Order(models.Model):
     reservation_time = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    waiter = models.ForeignKey(User, on_delete=models.CASCADE)
+    waiter = models.IntegerField() #models.ForeignKey(User, on_delete=models.CASCADE)
     full_price = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,default='Pending')
     menus = models.ManyToManyField(Menu, through='OrderMenu')
