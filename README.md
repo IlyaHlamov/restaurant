@@ -28,3 +28,5 @@
 
 ## Команда проекта
 я.
+![Django CI](https://github.com/IlyaHlamov/restaurant/actions/workflows/ci.yml/badge.svg)
+![Deploy](https://github.com/IlyaHlamov/restaurant/actions/workflows/deploy.yml/badge.svg)
