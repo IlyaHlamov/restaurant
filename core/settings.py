@@ -11,7 +11,7 @@ load_dotenv(override=True)
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", default="django-insecure-test-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", True)
@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
+        'DATABASE_URL': os.getenv("DATABASE_URL"),
         'ENGINE': os.getenv("SQL_ENGINE"),
         'NAME': os.getenv("SQL_DATABASE"),
         'USER': os.getenv("SQL_USER"),
