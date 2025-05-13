@@ -16,7 +16,7 @@ class Supplier(models.Model):
     name = models.CharField(max_length=100,unique=True)
     address = models.CharField(max_length=200)
     mail = models.EmailField()
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -30,10 +30,10 @@ class Product(models.Model):
         ('UNIT', 'unit'),
     ]
     name = models.CharField(max_length=100,unique=True)
-    unit_of_measure = models.CharField(max_length=50, choices=measure_TYPE_CHOICES)
+    unit_of_measure = models.CharField(max_length=100, choices=measure_TYPE_CHOICES)
     quantity = models.PositiveIntegerField()
     unit_cost = models.DecimalField(max_digits=10, decimal_places=2)
-    total_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
