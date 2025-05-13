@@ -36,5 +36,6 @@
 - Деплой на Render
 Автоматический деплой происходит при пуше в ветку master.
 
-![Django CI](https://github.com/IlyaHlamov/restaurant/actions/workflows/ci.yml/badge.svg)
+
+![Django CI](https://github.com/IlyaHlamov/restaurant/actions/workflows/restACTIONS.yml/badge.svg)
 ![Deploy](https://github.com/IlyaHlamov/restaurant/actions/workflows/deploy.yml/badge.svg)
